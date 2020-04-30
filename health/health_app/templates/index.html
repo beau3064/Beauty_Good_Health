@@ -1,0 +1,682 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Beauty Good Health</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="">
+
+    <!-- Core Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/others/animate.css" rel="stylesheet">
+    <link href="static/css/others/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/others/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/others/meanmenu.min.css" rel="stylesheet">
+    <link href="static/css/others/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/css/others/pe-icon-7-stroke.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <div class="yummy-load"></div>
+    </div>
+
+    <!-- ****** Top Header Area Start ****** -->
+    <div class="top_header_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-6">
+                <form action="/search/" method="GET" role="search" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" name="board_search" class="form-control" placeholder="search everything" />
+                            <button type="" class="btn btn-success">search</button>
+                            
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--  Login Register Area -->
+                <div class="col-7 col-sm-6">
+                    <div class="sing-up-button d-none d-lg-block">
+                        
+                        {% if user and not user.is_anonymous %}
+                        <p align="right"><font size="1">สวัสดีค่ะ คุณ{{ user.get_full_name|default:user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a><br/><a href="{% url 'post_page' %}">Dashboard</a> | <a href="{% url 'create_post' %}">Post</a></font><p>
+                        
+                        {% else %}
+                        
+                            <p align="right"><font size="1"><a href="{% url 'login' %}">Login | Register</a></font><p>
+                        
+                        {% endif%}
+                      </div>
+                      <div class="sing-up-button d-none d-lg-block">
+                          
+                      </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ****** Header Area Start ****** -->
+    <header class="header_area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-12">
+                    <div class="logo_area text-center">
+                        <img src="static/img/ee.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#beauty-good-health-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+                        <!-- Menu Area Start -->
+                        <div class="collapse navbar-collapse justify-content-center" id="beauty-good-health-nav">
+                            <ul class="navbar-nav" id="yummy-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'home' %}"><font size = "1"> Home</font><span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                   <a class="nav-link dropdown-toggle" href="{% url 'lifestyle' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Lifestyle</font></a>
+                                   <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Travel</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Fashion</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Movie</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Music</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Book</font></a>
+                                   </div>
+                               </li>
+                               <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="{% url 'food' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Food</font></a>
+                                  <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Clean food</font></a>
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Organic</font></a>
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Home Made</font></a>
+                                  </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="{% url 'health' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Health</font></a>
+                                 <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Fitness</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Boxing</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Yoga</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Body Weights</font></a>
+                                 </div>
+                             </li>
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{% url 'beauty' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Beauty</font></a>
+                                <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Cosmetic</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Skin care</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Hair</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Nail</font></a>
+                                </div>
+                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'video' %}"><font size = "1"> Video</font></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ****** Header Area End ****** -->
+
+
+
+    <!-- ****** Welcome Post Area Start ****** -->
+    <section class="welcome-post-sliders owl-carousel">
+
+        {% block page %}
+        <!-- Single Slide -->
+    {% for board in boards %}
+       <!-- Single Slide -->
+       <div class="welcome-single-slide">
+        <!-- Post Thumb -->
+        <img src="static/img/117.jpeg" alt="">
+        <!-- Overlay Text -->
+        <div class="project_title">
+            <div class="post-date-commnents d-flex">
+                <a href="#">April 29, 2020, 4:44 a.m.</a>
+                <a href="#">3 Comment</a>
+            </div>
+            <a href="{% url 'post_page' %}">
+                <h5>ท่าออกกำลังกาย เบิร์นไว สลายไขมัน</h5>
+            </a>
+        </div>
+    </div>
+    <!-- Single Slide -->
+<!-- Single Slide -->
+<div class="welcome-single-slide">
+    <!-- Post Thumb -->
+    <img src="static/img/114.jpeg" alt="">
+    <!-- Overlay Text -->
+    <div class="project_title">
+        <div class="post-date-commnents d-flex">
+            <a href="#">April 29, 2020, 5:09 a.m.</a>
+            <a href="#">0 Comment</a>
+        </div>
+        <a href="{% url 'post_page' %}">
+            <h5>ร้อนนี้ ไปไหนดี?</h5>
+        </a>
+    </div>
+</div>
+
+<!-- Single Slide -->
+<div class="welcome-single-slide">
+    <!-- Post Thumb -->
+    <img src="static/img/115.jpeg" alt="">
+    <!-- Overlay Text -->
+    <div class="project_title">
+        <div class="post-date-commnents d-flex">
+            <a href="#">April 29, 2020, 5:07 a.m.</a>
+            <a href="#">4 Comment</a>
+        </div>
+        <a href="{% url 'post_page' %}">
+            <h5>	ผักผลไม้ 7 อย่างที่ผู้หญิงไม่ควรพลาด</h5>
+        </a>
+    </div>
+</div>
+
+
+<div class="welcome-single-slide">
+        <!-- Post Thumb -->
+        <img src="static/img/110.jpg" alt="">
+        <!-- Overlay Text -->
+        <div class="project_title">
+            <div class="post-date-commnents d-flex">
+                <a href="#">April 29, 2020, 4:50 a.m.</a>
+                <a href="">3 Comment</a>
+            </div>
+            <a href="{% url 'post_page' %}">
+                <h5>หุ่นดีได้ไม่ง้อฟิตเนส</h5>
+            </a>
+        </div>
+    </div>
+<!-- Single Slide -->
+<div class="welcome-single-slide">
+    <!-- Post Thumb -->
+    <img src="static/img/118.jpeg" alt="">
+    <!-- Overlay Text -->
+    <div class="project_title">
+        <div class="post-date-commnents d-flex">
+            <a href="#">April 29, 2020, 4:48 a.m</a>
+            <a href="#">0 Comment</a>
+        </div>
+        <a href="{% url 'post_page' %}">
+            <h5>ออร่ามาเต็มกับ 5 วิธี  บำรุงผิว</h5>
+        </a>
+    </div>
+</div>
+
+</section>
+<!-- ****** Welcome Area End ****** -->
+
+            {% endfor %}
+            <!-- Single Slide -->
+        
+        {% endblock %}
+        
+
+
+
+    </section>
+    <!-- ****** Welcome Area End ****** -->
+
+
+    <!-- ****** Blog Area Start ****** -->
+    <br><br>
+    <section class="blog_area section_padding_0_80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="row">
+
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="single-post wow fadeInUp" data-wow-delay=".2s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/20.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">April 29, 2020, 3:18 a.m.</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 2</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="{% url 'post_page' %}">
+                                        <h2 class="post-headline">กินดี...ต้านโรคได้</h2>
+                                    </a>
+                                    <p>การกิน ไม่ใช่กินอย่างไรให้อร่อย แต่เน้นเรื่อง “ กินดี ” เพื่อต้านโรค เพราะเล็งเห็นว่าคนยุคนี้มีโรคภัยมากมายเกาะกุมรุมเร้าอันมีสาเหตุมาจากอาหารการกิน ผู้ใหญ่และวัยรุ่นยุคนี้คุ้นเคยกับอาหารจานด่วนมากกว่าน้ำพริกผักจิ้ม ส่วนเด็กยุคใหม่เรียกได้ว่าโตมาจากนมผงและอาหารจานด่วน แถมดูอ้วนท้วนสมบูรณ์แก้มกลมแสนน่ารัก แต่อนาคตทำนายได้ยากว่าจะรอดพ้นจากภัย โรคอ้วน เบาหวาน ความดันโลหิตสูง โรคหลอดเลือดตีบ โรคมะเร็งได้แค่ไหน</p>
+                                    <a href="{% url 'post_page' %}" class="read-more">Continue Reading..</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post -->
+                        <div class="col-12 col-md-6">
+                            <div class="single-post wow fadeInUp" data-wow-delay=".4s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/123.jpeg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 26, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <h4 class="post-headline">7 สุขนิสัยที่ต้องเข้าใจให้ถูก</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post -->
+                        <div class="col-12 col-md-6">
+                            <div class="single-post wow fadeInUp" data-wow-delay=".6s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/7.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 26, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <h4 class="post-headline">เริ่มฝึกโยคะกันเถอะ</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post -->
+                        <div class="col-12 col-md-6">
+                            <div class="single-post wow fadeInUp" data-wow-delay=".8s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/8.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 25, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <h4 class="post-headline">พิษร้ายของสเตียรอยด์</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post -->
+                        <div class="col-12 col-md-6">
+                            <div class="single-post wow fadeInUp" data-wow-delay="1s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/124.jpeg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 24, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <a href="#">
+                                        <h4 class="post-headline">เมื่อรังแครังควาน แก้ได้ด้วยสูตรธรรมชาติ</h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ******* List Blog Area Start ******* -->
+
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".8s">
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <div class="single-widget-area popular-post-widget">
+                            <div class="widget-title text-center">
+                                <h6>Popular Post</h6>
+                            </div>
+
+                            
+                        <!-- Single Post -->
+                        <div class="col-12">
+                                <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".6s">
+                                    <!-- Post Thumb -->
+                                    <div class="post-thumb">
+                                        <img src="static/img/125.jpeg" alt="">
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <div class="post-meta d-flex">
+                                            <div class="post-author-date-area d-flex">
+                                                <!-- Post Author -->
+                                                <div class="post-author">
+                                                    <a href="#">By Sarocha</a>
+                                                </div>
+                                                <!-- Post Date -->
+                                                <div class="post-date">
+                                                    <a href="#">Nov 22, 2019</a>
+                                                </div>
+                                            </div>
+                                            <!-- Post Comment & Share Area -->
+                                            <div class="post-comment-share-area d-flex">
+                                                <!-- Post Favourite -->
+                                                <div class="post-favourite">
+                                                    <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                                </div>
+                                                <!-- Post Comments -->
+                                                <div class="post-comments">
+                                                    <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                                </div>
+                                                <!-- Post Share -->
+                                                <div class="post-share">
+                                                    <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#">
+                                            <h4 class="post-headline">เทรนด์สุขภาพดี 2020 เน้นไดเอทสไตล์แพลนต์เบส ฟิตหุ่นแบบฟังก์ชันนัล เทรนนิ่ง</h4>
+                                        </a>
+                                        <p> “สุขภาพดีอย่างยั่งยืน” หรือที่เรียกว่า “Sustainable Health” ซึ่งจริงๆ แล้วสามารถทำได้ไม่ยาก ด้วยการปรับเปลี่ยนไลฟ์สไตล์ และสร้างการใช้ชีวิตอย่างมีสุขภาพดีทั้งด้านอาหาร ออกกำลังกาย และอารมณ์ ให้เป็นส่วนหนึ่งของชีวิตเราตลอดไป </p>
+                                        <a href="#" class="read-more">Continue Reading..</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".2s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/31.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 28, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <h4 class="post-headline">“เส้นใยอาหาร” ตัวช่วยลดน้ำหนัก เพื่อหุ่นเซี๊ยะ ผิวใส ขับถ่ายคล่องปรื๊ด!</h4>
+                                    </a>
+                                    <p>สาวๆ ที่กำลังมองหาตัวช่วยในการลดน้ำหนัก ต้องไม่มองข้าม “เส้นใยอาหาร” ที่มีอยู่ในพืชผักผลไม้นานาชนิด ที่จะช่วยให้ระบบขับถ่ายทำงานได้ดี ที่สำคัญ ทำให้อยู่ท้องนานขึ้น กินน้อยลง ช่วยให้ไม่อ้วนอีกด้วย นอกจากนี้ โรคเรื้อรังบางชนิด ไม่อาจรักษาหรือควบคุมได้ด้วยการใช้ยาเพียงอย่างเดียว ต้องอาศัยโภชนบำบัดและการปรับเปลี่ยนวิถีการดำเนินชีวิตที่เหมาะสม เพื่อบำรุงร่างกายและต้านโรคด้วย </p>
+                                    <a href="#" class="read-more">Continue Reading..</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Post -->
+                        <div class="col-12">
+                            <div class="list-blog single-post d-sm-flex wow fadeInUpBig" data-wow-delay=".4s">
+                                <!-- Post Thumb -->
+                                <div class="post-thumb">
+                                    <img src="static/img/32.jpg" alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content">
+                                    <div class="post-meta d-flex">
+                                        <div class="post-author-date-area d-flex">
+                                            <!-- Post Author -->
+                                            <div class="post-author">
+                                                <a href="#">By Sarocha</a>
+                                            </div>
+                                            <!-- Post Date -->
+                                            <div class="post-date">
+                                                <a href="#">Nov 25, 2019</a>
+                                            </div>
+                                        </div>
+                                        <!-- Post Comment & Share Area -->
+                                        <div class="post-comment-share-area d-flex">
+                                            <!-- Post Favourite -->
+                                            <div class="post-favourite">
+                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Comments -->
+                                            <div class="post-comments">
+                                                <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                            </div>
+                                            <!-- Post Share -->
+                                            <div class="post-share">
+                                                <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="#">
+                                        <h4 class="post-headline">4 วิธีปรับท่าวิ่ง ลดอาการปวดเข่า-ปวดหลัง ที่สายฟิตหุ่นไม่ควรละเลย!!</h4>
+                                    </a>
+                                    <p>ปัจจุบันคนหันมาสนใจสุขภาพกันมากขึ้น “การวิ่ง” ก็ได้รับความนิยมเพิ่มมากขึ้นด้วยเช่นกัน เพราะเป็นการออกกำลังกาย และ ไดเอท ที่ง่าย และลงทุนน้อย แค่มีรองเท้าวิ่งหนึ่งคู่ก็สามารถเริ่มวิ่งได้แล้ว แต่ด้วยความคิดที่ว่าการวิ่ง ‘ง่าย’ นี่แหละที่ทำให้นักวิ่งหน้าใหม่หลายคนละเลยที่จะเรียนรู้วิธีการวิ่งที่ถูกต้อง พอเกิดอาการบาดเจ็บก็ไปทึกทักเอาว่าเพราะรองเท้าไม่ดีเป็นสาเหตุ</p>
+                                    <a href="#" class="read-more">Continue Reading..</a>
+                                </div>
+                            </div>
+                        </div>
+
+                            <!-- Single Popular Post -->
+                            <div class="single-populer-post d-flex">
+                                <div class="post-content">
+                                </div>
+                            </div>
+                            <!-- Single Popular Post -->
+                            <div class="single-populer-post d-flex">
+                                <div class="post-content">
+                                </div>
+                            </div>
+                            <!-- Single Popular Post -->
+                            <div class="single-populer-post d-flex">
+                                <div class="post-content">
+                                </div>
+                            </div>
+                            <!-- Single Popular Post -->
+                            <div class="single-populer-post d-flex">
+                                <div class="post-content">
+                                </div>
+                            </div>
+                            <!-- Single Popular Post -->
+                            <div class="single-populer-post d-flex">
+                                <div class="post-content">
+                                </div>
+                            </div>
+                        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Copywrite Text -->
+                    <div class="copy_right_text text-center">
+                        <p>Copyright @2018 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- ****** Footer Menu Area End ****** -->
+
+    <!-- Jquery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="static/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="static/js/active.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thank You</title>
+</head>
+<body>
+<h2>All User Details</h2>
+<form method="post">
+
+            <ul>
+            <li>Name: <strong>{{ u.title }}</strong></li>
+
+            <li>Email: <strong>{{ u.gender|default:"hidden" }}</strong></li>
+
+            <li>Feedback: <strong>{{ u.notes }}</strong></li>
+          </ul>
+</form>
+</body>
+</html>

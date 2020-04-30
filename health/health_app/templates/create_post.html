@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Beauty Good Health</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="">
+
+    <!-- Core Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/others/animate.css" rel="stylesheet">
+    <link href="static/css/others/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/others/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/others/meanmenu.min.css" rel="stylesheet">
+    <link href="static/css/others/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/css/others/pe-icon-7-stroke.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <div class="yummy-load"></div>
+    </div>
+
+    <!-- ****** Top Header Area Start ****** -->
+    <div class="top_header_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-6">
+                <form action="/search/" method="GET" role="search" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" name="board_search" class="form-control" placeholder="search everything" />
+                            <button type="" class="btn btn-success">search</button>
+                            
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--  Login Register Area -->
+                <div class="col-7 col-sm-6">
+                    <div class="sing-up-button d-none d-lg-block">
+                        
+                        {% if user and not user.is_anonymous %}
+                        <p align="right"><font size="1">สวัสดีค่ะ คุณ{{ user.get_full_name|default:user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a><br/><a href="{% url 'post_page' %}">Dashboard</a> | <a href="{% url 'create_post' %}">Post</a></font><p>
+                        
+                        {% else %}
+                        
+                            <p align="right"><font size="1"><a href="{% url 'login' %}">Login | Register</a></font><p>
+                        
+                        {% endif%}
+                      </div>
+                      <div class="sing-up-button d-none d-lg-block">
+                          
+                      </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ****** Header Area Start ****** -->
+    <header class="header_area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-12">
+                    <div class="logo_area text-center">
+                        <img src="static/img/ee.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+    </header>
+    <!-- ****** Header Area End ****** -->
+
+   <legend>โปรดระบุข้อมูล</legend><br>
+    <form action="/" method="post">
+    {% csrf_token %}
+                    <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">หัวข้อ</label>
+                          <input type="text" class="form-control" name="topic_question" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">รายละเอียด</label>
+                          <textarea name="detail_question" class="form-control"></textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div align="center">
+                          <input type="submit" value="Send Post">
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              </form>
+    <!-- ****** Blog Area Start ****** -->
+    <br><br>
+    
+        
+
+
+    <!-- ****** Footer Menu Area End ****** -->
+
+    <!-- Jquery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="static/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="static/js/active.js"></script>
+</body>
+</html>
+

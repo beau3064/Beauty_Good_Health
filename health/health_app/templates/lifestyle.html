@@ -1,0 +1,600 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Beauty Good Health</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="">
+
+    <!-- Core Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/others/animate.css" rel="stylesheet">
+    <link href="static/css/others/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/others/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/others/meanmenu.min.css" rel="stylesheet">
+    <link href="static/css/others/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/css/others/pe-icon-7-stroke.css" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="static/css/responsive/responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader">
+        <div class="yummy-load"></div>
+    </div>
+
+    <!-- ****** Top Header Area Start ****** -->
+    <div class="top_header_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-5 col-sm-6">
+                <form action="/search/" method="GET" role="search" class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" name="board_search" class="form-control" placeholder="search everything" />
+                            <button type="" class="btn btn-success">search</button>
+                            
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <!--  Login Register Area -->
+                <div class="col-7 col-sm-6">
+                    <div class="sing-up-button d-none d-lg-block">
+                        
+                        {% if user and not user.is_anonymous %}
+                        <p align="right"><font size="1">สวัสดีค่ะ คุณ{{ user.get_full_name|default:user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">Logout</a><br/><a href="{% url 'post_page' %}">Dashboard</a> | <a href="{% url 'create_post' %}">Post</a></font><p>
+                        
+                        {% else %}
+                        
+                            <p align="right"><font size="1"><a href="{% url 'login' %}">Login | Register</a></font><p>
+                        
+                        {% endif%}
+                      </div>
+                      <div class="sing-up-button d-none d-lg-block">
+                          
+                      </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ****** Header Area Start ****** -->
+    <header class="header_area">
+        <div class="container">
+            <div class="row">
+                <!-- Logo Area Start -->
+                <div class="col-12">
+                    <div class="logo_area text-center">
+                        <img src="static/img/ee.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#beauty-good-health-nav" aria-controls="yummyfood-nav" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i> Menu</button>
+                        <!-- Menu Area Start -->
+                        <div class="collapse navbar-collapse justify-content-center" id="beauty-good-health-nav">
+                            <ul class="navbar-nav" id="yummy-nav">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'home' %}"><font size = "1"> Home</font><span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                   <a class="nav-link dropdown-toggle" href="{% url 'lifestyle' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Lifestyle</font></a>
+                                   <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Travel</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Fashion</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Movie</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Music</font></a>
+                                       <a class="dropdown-item" href="{% url 'lifestyle' %}"><font size = "1"> Book</font></a>
+                                   </div>
+                               </li>
+                               <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="{% url 'food' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Food</font></a>
+                                  <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Clean food</font></a>
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Organic</font></a>
+                                      <a class="dropdown-item" href="{% url 'food' %}"><font size = "1"> Home Made</font></a>
+                                  </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="{% url 'health' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Health</font></a>
+                                 <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Fitness</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Boxing</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Yoga</font></a>
+                                     <a class="dropdown-item" href="{% url 'health' %}"><font size = "1"> Body Weights</font></a>
+                                 </div>
+                             </li>
+                             <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="{% url 'beauty' %}" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><font size = "1"> Beauty</font></a>
+                                <div class="dropdown-menu" aria-labelledby="yummyDropdown">
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Cosmetic</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Skin care</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Hair</font></a>
+                                    <a class="dropdown-item" href="{% url 'beauty' %}"><font size = "1"> Nail</font></a>
+                                </div>
+                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'video' %}"><font size = "1"> Video</font></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ****** Header Area End ****** -->
+    
+ 
+    
+    <!-- ****** Breadcumb Area Start ****** -->
+    <div class="breadcumb-area" style="background-image: url(static/img/2.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="bradcumb-title text-center">
+                        <h2>Lifestyle</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ****** Breadcumb Area End ****** -->
+
+    <!-- ****** Archive Area Start ****** -->
+    <section class="archive-area section_padding_80">
+        <div class="container">
+            <div class="row">
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                  <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                      <!-- Post Thumb -->
+                      <div class="post-thumb">
+                          <img src="static/img/158.jpeg" alt="">
+                      </div>
+                      <!-- Post Content -->
+                      <div class="post-content">
+                          <div class="post-meta d-flex">
+                              <div class="post-author-date-area d-flex">
+                                    <!-- Post Author -->
+                                    <div class="post-author">
+                                        <a href="#">By Sarocha</a>
+                                    </div>
+                                    <!-- Post Date -->
+                                    <div class="post-date">
+                                        <a href="#">Nov 28, 2019</a>
+                                    </div>
+                                </div>
+                                <!-- Post Comment & Share Area -->
+                                <div class="post-comment-share-area d-flex">
+                                    <!-- Post Favourite -->
+                                    <div class="post-favourite">
+                                        <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                    </div>
+                                    <!-- Post Comments -->
+                                    <div class="post-comments">
+                                        <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                    </div>
+                                    <!-- Post Share -->
+                                    <div class="post-share">
+                                        <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+                                <h4 class="post-headline"><font size = "4">เที่ยวเกาะสวยในไทย <br>ร้อนนี้ต้องไป</font></h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/159.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">เติมเต็มความสุข ม่วนใจ <br>กับ 8 ที่เที่ยวดอยอินทนนท์</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/163.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">รวม 10 ที่เที่ยวโอบกอดป่าเขียวทั่วไทย</font> </h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/164.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">ขั้นตอนเตรียมตัวก่อนเที่ยว<br>แบ็คแพ็ค</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/165.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">เที่ยวอินเดียกันเถอะ</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/166.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">เที่ยวลุยๆที่กระบี่</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/167.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">พิชิตเขาเนเธอร์แลนด์กันเถอะ</font> </h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/168.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">กางแผนที่พร้อมเที่ยว<br>ไปกับเพื่อน</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Single Post -->
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="single-post wow fadeInUp" data-wow-delay="0.3s">
+                    <!-- Post Thumb -->
+                    <div class="post-thumb">
+                        <img src="static/img/169.jpeg" alt="">
+                    </div>
+                    <!-- Post Content -->
+                    <div class="post-content">
+                        <div class="post-meta d-flex">
+                            <div class="post-author-date-area d-flex">
+                                  <!-- Post Author -->
+                                  <div class="post-author">
+                                      <a href="#">By Sarocha</a>
+                                  </div>
+                                  <!-- Post Date -->
+                                  <div class="post-date">
+                                      <a href="#">Nov 28, 2019</a>
+                                  </div>
+                              </div>
+                              <!-- Post Comment & Share Area -->
+                              <div class="post-comment-share-area d-flex">
+                                  <!-- Post Favourite -->
+                                  <div class="post-favourite">
+                                      <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Comments -->
+                                  <div class="post-comments">
+                                      <a href="#"><i class="fa fa-comment-o" aria-hidden="true"></i> 0</a>
+                                  </div>
+                                  <!-- Post Share -->
+                                  <div class="post-share">
+                                      <a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                          <a href="#">
+                              <h4 class="post-headline"><font size = "4">9 ดอย ที่เที่ยวเชียงใหม่ <br>หน้าหนาว อยากตื่นมาเจอเขา</font></h4>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+
+                <div class="col-12">
+                    <div class="pagination-area d-sm-flex mt-15">
+                        <nav aria-label="#">
+                            <ul class="pagination">
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ****** Archive Area End ****** -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Copywrite Text -->
+                    <div class="copy_right_text text-center">
+                        <p>Copyright @2018 All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ****** Footer Menu Area End ****** -->
+
+    <!-- Jquery-2.2.4 js -->
+    <script src="static/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap-4 js -->
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins JS -->
+    <script src="static/js/others/plugins.js"></script>
+    <!-- Active JS -->
+    <script src="static/js/active.js"></script>
+</body>
+</html>
